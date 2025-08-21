@@ -24,23 +24,33 @@ Prompt
 - 提取每个案例的背景、涉及主体、争议焦点和裁决结果
 - 以JSON数组格式输出
 
-## Constrains：
+## Constraints：
 - 确保法律术语翻译准确
 - JSON格式符合语法规范
-- 包含所有核心要素
+- 包含所有核心要素，不能为空
 
 ## Workflow：
 1. 阅读并理解提供的文本
-2. 将文本中的案例进行拆分
+2. 将文本中的案例进行拆分，如案例拆分或信息提取有疑义，需标注‘信息不全’或‘待补充’等提示
 3. 对每个案例提取背景、涉及主体、争议焦点和裁决结果
 4. 将提取的信息翻译成英语
 5. 按照JSON格式输出
 
 ## OutputFormat：
-- background
-- involved_subjects
-- dispute_points
-- outcomes
+[
+  {
+    "background": "string",
+    "involved_subjects": {
+      "plaintiff": "string",
+      "defendant": "string"
+    },
+    "dispute_points": "string",
+    "outcomes": {
+      "tribunal": "string",
+      "decision": "string"
+    }
+  }
+]
 
 ## Suggestions：
 - 确保在翻译法律术语时使用权威译法
