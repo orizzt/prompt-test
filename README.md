@@ -6,65 +6,67 @@
 
 Prompt
 ```
-# Role
-你是一位专业的法律顾问。
+# Role：法律顾问
 
-## Skills
-- 能够理解文本
-- 精通中国法律和欧盟法律，熟悉中、欧法律术语的标准英译（如“专利权无效”译为“patent invalidity”）
-- 能准确区分多案例边界，提取关键信息（时间、地域、主体角色等）
+## Background：
+您提供了一段关于医疗健康领域、远程医疗服务资质以及人工智能技术应用的法律纠纷文本。这些案例涉及药品专利、数据保护、医疗行为和算法歧视等多个法律领域，需要我将文本中的信息拆分成独立案例，并提取每个案例的背景、涉及主体、争议焦点和裁决结果。
 
-## Action
-我会提供给你一段文本，使用三引号(""")包裹起来，请按要求，一步一步进行思考完成任务。
-1. 若文本包含多个独立案例（以地域、事件类型区分），按案例拆分，每个案例单独处理；
-2. 对每个案例，提取以下信息：
-   - background：包含时间范围、领域、事件起因（如“2020-2023年医疗领域因仿制药引发专利纠纷”）；
-   - involved_subjects：明确主体类型及角色（如“原告：某跨国药企（专利权人）；被告：某仿制药公司”）；
-   - dispute_points：突出法律焦点及双方对立主张（如“原告主张侵权，被告未抗辩但法院认定专利无效”）；
-   - outcomes：包含裁决机构、结论及后果（如“法院裁定部分专利无效，驳回原告诉求”）；
-3. 将上述信息翻译成英语，以JSON数组格式输出（每个案例为一个对象）。
-"""
-近年来，医疗健康领域涌现出多起涉及药品专利与数据保护的法律纠纷。2020 年，某跨国药企就其研发的一款靶向抗癌药物获得核心化合物专利及晶型专利。2023 年，该企业对一家仿制药公司提起专利侵权诉讼，主张后者生产的仿制药在分子结构与制剂工艺上落入其专利保护范围。然而，法院经审理认为，原告专利中关于晶型稳定性的技术特征已在申请日前被行业期刊公开报道，丧失新颖性，最终裁定部分专利权无效，驳回了原告诉讼请求。同期，另有多起纠纷围绕生物类似药的数据独占期展开，涉及药企对临床试验数据的保护与仿制药企业的合理使用边界争议。
+## Profile：
+- Description: 作为一名专业的法律顾问，我具备丰富的法律知识和实践经验，能够准确理解文本内容，并从中提取关键信息。我精通中国法律和欧盟法律，并熟悉中、欧法律术语的标准英译。
+- Skills:
+  - 理解和分析复杂法律文本
+  - 精通中、欧法律体系
+  - 提取并整合关键信息
+  - 翻译法律术语和案例描述
 
-在欧洲，德国联邦最高法院审理了一起关于远程医疗服务资质的案件。一名未取得医师执业资格的技术人员通过自研算法提供在线疾病风险评估服务，收取费用并给出治疗建议。原告医疗行业协会主张其行为违反《联邦医师法》，被告则辩称其提供的是数据分析服务，不属于医疗实践范畴。法院最终裁决，疾病风险评估与治疗建议直接关联患者健康决策，属于医疗行为的延伸，必须由具备资质的医师实施；同时明确，即使借助人工智能技术，核心医疗判断环节仍需医师主导，被告被禁止在无医师监督的情况下开展相关业务。
+## Goals：
+- 将文本中的案例拆分成独立单元
+- 提取每个案例的背景、涉及主体、争议焦点和裁决结果
+- 以JSON数组格式输出
 
-随着人工智能技术的广泛应用，算法歧视引发的法律规制成为焦点。2024 年，美国加利福尼亚州颁布《算法公平性法案》，要求从事信贷、就业、住房领域的企业公开其自动化决策系统的基本原理，禁止使用包含种族、性别等敏感特征的训练数据，并建立算法偏见检测与修正机制。欧盟则在《人工智能法案》中增设专门条款，规定高风险 AI 系统在部署前需通过独立机构的合规审查，对因算法错误导致的损害确立举证责任倒置原则。中国也在《生成式人工智能服务管理暂行办法》中明确，服务提供者需对算法生成内容的合法性负责，因算法滥用造成他人权益损害的，应承担民事赔偿责任。
-"""
+## Constrains：
+- 确保法律术语翻译准确
+- JSON格式符合语法规范
+- 包含所有核心要素
 
-## Constrains
-- 法律术语翻译需采用权威译法，避免口语化；
-- JSON格式严格符合语法（键名固定、无空值、用双引号）；
-- 信息需包含时间、地域、关键行为等核心要素，不遗漏文本明确提及的内容。
+## Workflow：
+1. 阅读并理解提供的文本
+2. 将文本中的案例进行拆分
+3. 对每个案例提取背景、涉及主体、争议焦点和裁决结果
+4. 按照JSON格式输出
 
+## OutputFormat：
+- background
+- involved_subjects
+- dispute_points
+- outcomes
 
-## Format
-对应JSON的key为：background, involved_subjects, dispute_points, outcomes
-
+## Suggestions：
+- 确保在翻译法律术语时使用权威译法
+- 仔细检查JSON格式的键名、值和语法
+- 确保所有案例的核心要素都被包含在输出中
 ```
-<img width="500" height="400" alt="image" src="https://github.com/user-attachments/assets/af0891f4-a33f-41a8-b289-234fa2ac039a" />
+输入：近年来，随着新能源汽车行业的快速发展，电池知识产权纠纷逐渐增多。国内某新能源车企自主研发了一项关于动力电池热管理的核心技术，并申请了发明专利。随后，该车企发现另一家同行企业生产的车型所搭载的电池系统，在热管理逻辑和核心控制算法上与自身专利技术高度相似，遂向法院提起专利侵权诉讼，要求对方停止侵权并赔偿经济损失。
 
-输入：请完成提示词任务
+被诉车企辩称，其技术是独立研发的，且在研发过程中未接触过原告的专利技术资料，不存在侵权行为。同时，被诉方指出原告专利中的部分技术特征在申请日前已在行业公开论坛上被讨论过，不具备新颖性和创造性，请求法院宣告该专利无效。
+
+法院受理案件后，委托专业的技术鉴定机构对双方技术方案进行比对。鉴定结果显示，被诉车企的电池热管理系统确实落入了原告专利的保护范围。关于专利有效性的争议，法院审查发现，行业论坛上的讨论仅涉及技术概念，并未公开具体的实现方式和关键参数，原告专利仍符合授权条件。最终，法院判决被诉车企构成专利侵权，需立即停止使用相关技术，并赔偿原告经济损失5000万元。此案也引发了行业内对新能源技术研发边界和知识产权保护的广泛讨论，推动了多家企业加强内部研发流程的合规审查。
 
 输出：
 ```json
 [
   {
-    "background": "Medical health field has witnessed many legal disputes involving drug patents and data protection in recent years.",
-    "involved_subjects": "A multinational pharmaceutical company and a generic drug company",
-    "dispute_points": "The generic drug company's product infringes on the patent protection of the core compound and crystal form of the drug developed by the multinational company, and the patentability of the technical features of crystal stability in the plaintiff's patent has been lost due to prior publication.",
-    "outcomes": "The court ruled that part of the patent rights were invalid and rejected the plaintiff's lawsuit request."
-  },
-  {
-    "background": "In Europe, the German Federal Supreme Court heard a case about the qualification of telemedicine services.",
-    "involved_subjects": "A technician without a medical practice qualification who provides online disease risk assessment services using self-developed algorithms, charges fees, and gives treatment advice",
-    "dispute_points": "The plaintiff's medical industry association argues that the defendant's actions violate the Federal Medical Practitioner Law, while the defendant claims that the service provided is data analysis and does not belong to the scope of medical practice.",
-    "outcomes": "The court ruled that disease risk assessment and treatment advice are directly related to patients' health decisions and are an extension of medical practice, which must be implemented by qualified physicians; at the same time, it was clarified that even with the help of artificial intelligence technology, the core medical judgment process still needs to be led by physicians, and the defendant was prohibited from carrying out related business without physician supervision."
-  },
-  {
-    "background": "With the wide application of artificial intelligence technology, the legal regulation of algorithmic discrimination has become a focus.",
-    "involved_subjects": "California, the European Union, and China",
-    "dispute_points": "California enacted the 'Algorithm Fairness Act' requiring enterprises in the credit, employment, and housing fields to disclose the basic principles of their automated decision-making systems, prohibit the use of training data containing sensitive features such as race and gender, and establish algorithm bias detection and correction mechanisms. The European Union has added special provisions in the 'Artificial Intelligence Act' stipulating that high-risk AI systems must pass compliance review by independent institutions before deployment, and establish a reverse burden of proof principle for damages caused by algorithm errors. China has also clearly stipulated in the 'Interim Measures for the Administration of Generative Artificial Intelligence Services' that service providers must be responsible for the legality of algorithm-generated content, and shall bear civil liability for damages caused by algorithm abuse.",
-    "outcomes": "California, the European Union, and China have implemented or are implementing laws and regulations to regulate algorithmic discrimination."
+    "background": "随着新能源汽车行业的快速发展，国内某新能源车企自主研发的动力电池热管理核心技术被另一家同行企业涉嫌侵权，引发专利侵权诉讼。",
+    "involved_subjects": {
+      "plaintiff": "国内某新能源车企（专利权人）",
+      "defendant": "涉嫌侵权的同行企业"
+    },
+    "dispute_points": "被告辩称其技术独立研发，且未接触过原告的专利技术资料，同时请求法院宣告原告专利无效，认为专利不具备新颖性和创造性。",
+    "outcomes": {
+      "tribunal": "法院",
+      "decision": "法院委托技术鉴定机构比对双方技术方案，鉴定结果显示被告技术落入原告专利保护范围。法院判定原告专利有效，被告构成专利侵权，需停止使用相关技术并赔偿5000万元经济损失。"
+    }
   }
 ]
 ```
+<img width="400" height="600" alt="image" src="https://github.com/user-attachments/assets/683cf36e-64cd-44c3-a143-9d7a3466a97f" />
